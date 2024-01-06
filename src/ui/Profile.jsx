@@ -1,0 +1,27 @@
+import styled from "styled-components";
+import HideButton from "./HideButton";
+import Position from "./Position";
+import Salary from "./Salary";
+import { useState } from "react";
+
+const StyledProfile = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary-800);
+  padding: 0 1rem 1rem 1rem;
+  border-radius: var(--border-radius-md);
+`;
+function Profile() {
+  const [hideInfo, setHideInfo] = useState(true);
+  return (
+    <StyledProfile>
+      <Position />
+      <Salary hideInfo={hideInfo} />
+      <HideButton setHideInfo={setHideInfo} hideInfo={hideInfo} />
+    </StyledProfile>
+  );
+}
+
+export default Profile;
