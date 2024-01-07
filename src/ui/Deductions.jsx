@@ -11,17 +11,23 @@ const StyledDeduction = styled.div`
 `;
 
 const Total = styled.h3`
+  font-family: "Poppins";
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   outline: 1px solid var(--color-grey-200);
+  color: var(--color-grey-400);
   padding: 1rem;
+  span {
+    color: var(--color-primary-900);
+  }
   @media (max-width: 780px) {
     font-size: 1.5rem;
   }
 `;
 
 const Salary = styled.h2`
+  font-family: "Poppins";
   max-width: 100%;
   display: flex;
   justify-content: space-between;

@@ -6,10 +6,10 @@ import { MdModeEditOutline } from "react-icons/md";
 const StyledEmployeeItem = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: 0.3rem 0;
-  width: auto;
+  width: 100%;
   border: 1px solid var(--color-grey-300);
   color: var(--color-primary-900);
   padding: 0.7rem;
@@ -17,6 +17,10 @@ const StyledEmployeeItem = styled.div`
   font-size: 2rem;
   &:hover {
     background-color: var(--color-secondary-600);
+  }
+  span {
+    font-size: 1.3rem;
+    color: var(--color-grey-400);
   }
 
   @media (max-width: 1400px) {
@@ -41,11 +45,16 @@ const ActionButton = styled.div`
     }
   }
 `;
-function EmployeeItem() {
+function EmployeeItem({ employee }) {
   return (
     <StyledEmployeeItem>
-      <p>ODIÑA, JOHN BRYAN S.</p>
-      <p>Instructor 1</p>
+      <p>
+        {employee.name}{" "}
+        <span>
+          <p>{employee.position}</p>
+        </span>
+      </p>
+
       <ActionButton>
         <Button variation="secondary" size="small">
           {" "}

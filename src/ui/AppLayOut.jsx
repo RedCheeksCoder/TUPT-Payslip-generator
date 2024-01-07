@@ -20,11 +20,11 @@ const Main = styled.main`
   }
 `;
 
-function AppLayOut() {
+function AppLayOut({ token }) {
   return (
     <StyledAppLayOut>
       <Header />
-      <Sidebar />
+      <Sidebar token={token} />
       <Main>
         <Outlet />
       </Main>

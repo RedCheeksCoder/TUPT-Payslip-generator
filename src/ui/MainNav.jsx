@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { GrDocumentPdf } from "react-icons/gr";
 import { HiCalendarDays, HiOutlineHome } from "react-icons/hi2";
@@ -71,6 +71,11 @@ function MainNav() {
           <StyledNavLink to="/payslip">
             <GrDocumentPdf />
             <span>Payslip</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/login">
+            <span>Logout</span>
           </StyledNavLink>
         </li>
       </NavList>

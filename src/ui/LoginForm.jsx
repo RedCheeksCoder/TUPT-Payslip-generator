@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const LoginFormWrapper = styled.div`
   display: flex;
@@ -38,7 +39,6 @@ const Button = styled.button`
 `;
 
 const LoginAsUserButton = styled(Button)``; // Inherits styles from Button
-const LoginAsAdminButton = styled(Button)``; // Inherits styles from Button
 
 const Heading = styled.p`
   font-size: 2rem;
@@ -50,15 +50,25 @@ const Heading = styled.p`
   }
 `;
 const LoginForm = () => {
+
   return (
     <LoginFormWrapper>
       <Heading>
         TUP-Taguig <span>Payroll payment slip</span>
       </Heading>
-      <Input type="text" placeholder="Username" />
-      <Input type="password" placeholder="Password" />
-      <LoginAsUserButton>Login as user</LoginAsUserButton>
-      <LoginAsAdminButton>Login as admin</LoginAsAdminButton>
+      <Input
+        type="text"
+        placeholder="Email"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <Input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <LoginAsUserButton onClick={handleLogin}>Login</LoginAsUserButton>
     </LoginFormWrapper>
   );
 };

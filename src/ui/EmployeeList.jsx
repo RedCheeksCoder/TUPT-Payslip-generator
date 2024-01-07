@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import EmployeeItem from "./EmployeeItem";
-import { useQuery } from "@tanstack/react-query";
+import { useEmployees } from "../App";
 
 const StyledEmployeeList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   max-height: 65rem;
   column-gap: 1rem;
   overflow-y: auto;
@@ -14,77 +14,14 @@ const StyledEmployeeList = styled.div`
   }
 `;
 function EmployeeList() {
-  useQuery({
-    queryKey: ["employees"],
-    queryFn:
-  });
+  const { employees } = useEmployees();
   return (
     <>
       <h1>List of Employees</h1>
       <StyledEmployeeList>
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
-        <EmployeeItem />
+        {employees.map((employee) => (
+          <EmployeeItem employee={employee} key={employee.id} />
+        ))}
       </StyledEmployeeList>
     </>
   );
