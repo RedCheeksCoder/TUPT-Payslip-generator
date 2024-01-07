@@ -52,7 +52,7 @@ const Heading = styled.p`
   }
 `;
 
-const Login = ({ setToken }) => {
+const LoginForms = ({ setToken, setUserEmail }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -67,7 +67,6 @@ const Login = ({ setToken }) => {
         [event.target.name]: event.target.value,
       };
     });
-    console.log(formData.email);
   }
 
   async function handleSubmit(e) {
@@ -78,14 +77,15 @@ const Login = ({ setToken }) => {
         email: formData.email,
         password: formData.password,
       });
+      setUserEmail(data.user.email);
 
       if (error) throw error;
-      () => setToken(data);
-      navigate("/payslip");
+      setToken(data);
+      navigate("/announcement");
 
       //   alert('Check your email for verification link')
     } catch (error) {
-      console.log(error.message); // Access the error message using 'error.message'
+      alert("Username or password is wrong"); // Access the error message using 'error.message'
     }
   }
 
@@ -108,4 +108,4 @@ const Login = ({ setToken }) => {
   );
 };
 
-export default Login;
+export default LoginForms;

@@ -1,7 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { IoIosLogOut } from "react-icons/io";
 import styled from "styled-components";
 import { GrDocumentPdf } from "react-icons/gr";
 import { HiCalendarDays, HiOutlineHome } from "react-icons/hi2";
+import { useUser } from "../App";
 
 const NavList = styled.ul`
   display: flex;
@@ -52,29 +54,35 @@ const StyledMainNav = styled.nav`
   margin-top: 2rem;
 `;
 function MainNav() {
+  const { userEmail } = useUser();
   return (
     <StyledMainNav>
       <NavList>
-        <li>
-          <StyledNavLink to="/admin">
-            <HiOutlineHome />
-            <span>Home</span>
-          </StyledNavLink>
-        </li>
+        {userEmail === "diane_feria@tup.edu.ph" ? (
+          <li>
+            <StyledNavLink to="/admin">
+              <HiOutlineHome />
+              <span>Home</span>
+            </StyledNavLink>
+          </li>
+        ) : (
+          <li>
+            <StyledNavLink to="/payslip">
+              <GrDocumentPdf />
+              <span>Payslip</span>
+            </StyledNavLink>
+          </li>
+        )}
         <li>
           <StyledNavLink to="/announcement">
             <HiCalendarDays />
             <span>Announcements</span>
           </StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to="/payslip">
-            <GrDocumentPdf />
-            <span>Payslip</span>
-          </StyledNavLink>
-        </li>
+
         <li>
           <StyledNavLink to="/login">
+            <IoIosLogOut />
             <span>Logout</span>
           </StyledNavLink>
         </li>

@@ -17,10 +17,11 @@ import { getEmployees } from "./services/apiEmployees";
 import Spinner from "./ui/Spinner";
 
 const EmployeeContext = createContext();
-
+const UserContext = createContext();
 function App() {
   /* LOG IN */
   const [token, setToken] = useState(null);
+  const [userEmail, setUserEmail] = useState("");
   if (token) {
     sessionStorage.setItem("token", JSON.stringify(token));
   }
@@ -33,7 +34,7 @@ function App() {
   }, []);
 
   /* CONTEXT API */
-  /* const {
+  const {
     isLoading,
     data: employees,
     error,
@@ -41,48 +42,61 @@ function App() {
     queryKey: ["employees"],
     queryFn: getEmployees,
   });
-  if (isLoading) return <Spinner />; */
+  if (isLoading) return <Spinner />;
 
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
-      <EmployeeContext.Provider
-        value={
-          {
-            /* isLoading, employees, error */
-          }
-        }>
-        <BrowserRouter>
-          <Routes>
-            {token ? (
-              <Route element={<AppLayOut />}>
-                <Route index element={<Navigate replace to="payslip" />} />
-                <Route path="announcement" element={<Announcement />} />
-                <Route path="payslip" element={<Payslip />} />
-                <Route path="admin" element={<Admin />} />
-                <Route path="list" element={<EmployeeList />} />
-                <Route path="addAnnouncement" element={<AddAnnouncement />} />
-                <Route path="inputDeduction" element={<InputDeductions />} />
-              </Route>
-            ) : (
-              ""
-            )}
+      <UserContext.Provider value={{ userEmail }}>
+        <EmployeeContext.Provider
+          value={{
+            isLoading,
+            employees,
+            error,
+          }}>
+          <BrowserRouter>
+            <Routes>
+              {userEmail ? (
+                <Route element={<AppLayOut />}>
+                  <Route index element={<Navigate replace to="payslip" />} />
+                  <Route path="announcement" element={<Announcement />} />
+                  <Route path="payslip" element={<Payslip />} />
+                  <Route path="admin" element={<Admin />} />
+                  <Route path="list" element={<EmployeeList />} />
+                  <Route path="addAnnouncement" element={<AddAnnouncement />} />
+                  <Route path="inputDeduction" element={<InputDeductions />} />
+                </Route>
+              ) : (
+                ""
+              )}
 
-            <Route path="login" element={<Login setToken={setToken} />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </EmployeeContext.Provider>
+              <Route
+                path="login"
+                element={
+                  <Login setToken={setToken} setUserEmail={setUserEmail} />
+                }
+              />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </EmployeeContext.Provider>
+      </UserContext.Provider>
     </>
   );
 }
 
 export function useEmployees() {
-  const context = useContext(EmployeeContext);
-  if (context === undefined)
+  const employeeContext = useContext(EmployeeContext);
+  if (employeeContext === undefined)
     throw new Error("PostContext was used outside of the PostProvider");
-  return context;
+  return employeeContext;
+}
+export function useUser() {
+  const userContext = useContext(UserContext);
+  if (userContext === undefined)
+    throw new Error("PostContext was used outside of the PostProvider");
+  return userContext;
 }
 
 export default App;

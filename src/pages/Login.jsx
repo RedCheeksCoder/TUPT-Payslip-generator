@@ -6,10 +6,10 @@ const StyledLogin = styled.div`
   justify-content: center;
   align-items: center;
 `;
-function Login() {
+function Login({ setUserEmail, setToken }) {
   return (
     <StyledLogin>
-      <LoginForms />
+      <LoginForms setUserEmail={setUserEmail} setToken={setToken} />
     </StyledLogin>
   );
 }

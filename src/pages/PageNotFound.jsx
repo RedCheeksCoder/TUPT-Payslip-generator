@@ -48,7 +48,7 @@ function PageNotFound() {
           been able to lay my eye on the page you<span>&#39;</span>ve been
           searching for.
         </h1>
-        <StyledNavLink to="/payslip">
+        <StyledNavLink to="/login">
           <span>Home</span>
         </StyledNavLink>
       </StyledPageNotFound>

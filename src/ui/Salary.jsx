@@ -14,25 +14,25 @@ const StyledSalary = styled.div`
     padding: 0.7rem 2rem;
   }
 `;
-function Salary({ hideInfo }) {
+function Salary({ hideInfo, salary, pera, grossAmount }) {
   return (
     <StyledSalary>
       <p>
         <span>Monthly Salary: </span>
-        <b>{`${hideInfo ? "*****" : "26,052"} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : salary} PHP`}</b>
       </p>
       <p>
         <span>P.E.R.A.: </span>
-        <b>{`${hideInfo ? "*****" : "2,000"} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : pera} PHP`}</b>
       </p>
       <p>
         <span>AdCom: </span>
-        <b>{`${hideInfo ? "*****" : "3,000"} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : "0.00"} PHP`}</b>
       </p>
       <hr />
       <p>
         <span>Gross Amount Due: </span>
-        <b>{`${hideInfo ? "*****" : "31,052"} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : grossAmount} PHP`}</b>
       </p>
     </StyledSalary>
   );

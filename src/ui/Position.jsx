@@ -10,14 +10,14 @@ const StyledPosition = styled.div`
     justify-content: space-between;
   }
 `;
-function Position() {
+function Position({ employeeNum, salaryGrade, step }) {
   return (
     <StyledPosition>
       <p>
-        <span>Employee Number:</span> <b>INST1-0123</b>
+        <span>Employee Number:</span> <b>{employeeNum}</b>
       </p>
       <p>
-        <span>Salary grade/Step:</span> <b>12 - 1</b>
+        <span>Salary grade/Step:</span> <b>{`${salaryGrade} - ${step}`}</b>
       </p>
     </StyledPosition>
   );

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useEmployees, useUser } from "../App";
+import { findEmployeeByEmail } from "../helper/FindEmployee";
 
 const StyledDeduction = styled.div`
   font-family: "Courier New", Courier, monospace;
@@ -91,123 +93,126 @@ const DeductionsCol = styled.div`
   }
 `;
 function Deductions() {
+  const { userEmail } = useUser();
+  const { employees } = useEmployees();
+  const employee = findEmployeeByEmail(employees, userEmail);
   return (
     <StyledDeduction>
       <DeductionsCol>
         <ul>
           <li>
-            Ref-sal <span>0.00</span>
+            Ref-sal <span>{employee.refSal}</span>
           </li>
           <li>
-            Ref-PERA/ADA <span>0.00</span>
+            Ref-PERA/ADA <span>{employee.refPeraAda}</span>
           </li>
           <li>
-            Disallowance <span>0.00</span>
+            Disallowance <span>{employee.disallowance}</span>
           </li>
           <li>
-            W/Tax<span>466.64</span>
+            W/Tax<span>{employee.wTax}</span>
           </li>
           <li>
-            PhilHealth<span>390.78</span>
+            PhilHealth<span>{employee.philHealth}</span>
           </li>
           <li>
-            Life&Ret<span>2344.68</span>
+            Life&Ret<span>{employee.lifeAndRetirement}</span>
           </li>
           <li>
-            GSIS receivables<span>0.00</span>
+            GSIS receivables<span>{employee.gsisReceivables}</span>
           </li>
           <li>
-            GSIS-Opt. Loan<span>0.00</span>
+            GSIS-Opt. Loan<span>{employee.gsisOptLoan}</span>
           </li>
           <li>
-            GSIS Restructured<span>0.00</span>
+            GSIS Restructured<span>{employee.gsisRestructured}</span>
           </li>
           <li>
-            Train. Meth. Prog<span>0.00</span>
+            Train. Meth. Prog<span>{employee.trainMethProg}</span>
           </li>
           <li>
-            GSIS Sal Loan<span>0.00</span>
+            GSIS Sal Loan<span>{employee.gsisSalLoan}</span>
           </li>
           <li>
-            GSIS-Pol Loan<span>0.00</span>
+            GSIS-Pol Loan<span>{employee.gsisPolLoan}</span>
           </li>
           <li>
-            GSIS- Low cost<span>0.00</span>
+            GSIS- Low cost<span>{employee.gsisLowCost}</span>
           </li>
           <li>
-            GSIS Emer. Loan<span>0.00</span>
+            GSIS Emer. Loan<span>{employee.gsisEmerLoan}</span>
           </li>
           <li>
-            GSIS HIP<span>0.00</span>
+            GSIS HIP<span>{employee.gsisHip}</span>
           </li>
           <li>
-            Pagibig MPL<span>0.00</span>
+            Pagibig MPL<span>{employee.pagibigMpl}</span>
           </li>
           <li>
-            Car sticker<span>0.00</span>
+            Car sticker<span>{employee.carSticker}</span>
           </li>
           <li>
-            HDMF Cont<span>100.00</span>
+            HDMF Cont<span>{employee.hdmfCont}</span>
           </li>
           <li>
-            Pagibig Emer<span>0.00</span>
+            Pagibig Emer<span>{employee.pagibigEmer}</span>
           </li>
           <li>
-            Dorm<span>0.00</span>
+            Dorm<span>{employee.dorm}</span>
           </li>
           <li>
-            Land Bank<span>0.00</span>
+            Land Bank<span>{employee.landbank}</span>
           </li>
           <li>
-            NHMFC<span>0.00</span>
+            NHMFC<span>{employee.nhmfc}</span>
           </li>
           <li>
-            GSIS-Educ Loan<span>0.00</span>
+            GSIS-Educ Loan<span>{employee.gsisEducLoan}</span>
           </li>
           <li>
-            GSIS Enhance<span>0.00</span>
+            GSIS Enhance<span>{employee.gsisEnhanced}</span>
           </li>
           <li>
-            GSIS Conso Loan<span>0.00</span>
+            GSIS Conso Loan<span>{employee.gsisConsoLoan}</span>
           </li>
           <li>
-            MPL-TUP<span>0.00</span>
+            MPL-TUP<span>{employee.mplTup}</span>
           </li>
           <li>
-            TUPFA<span>2300.00</span>
+            TUPFA<span>{employee.tupfa}</span>
           </li>
           <li>
-            GSIS-E card<span>0.00</span>
+            GSIS-E card<span>{employee.gsisEcard}</span>
           </li>
           <li>
-            TUPTEA Hcard<span>0.00</span>
+            TUPTEA Hcard<span>{employee.tupteaHcard}</span>
           </li>
           <li>
-            HDMF-MP2<span>0.00</span>
+            HDMF-MP2<span>{employee.hdmfMp2}</span>
           </li>
           <li>
-            Coop<span>0.00</span>
+            Coop<span>{employee.coop}</span>
           </li>
           <li>
-            GSIS Opt. Ins<span>0.00</span>
+            GSIS Opt. Ins<span>{employee.gsisOpsIns}</span>
           </li>
           <li>
-            MTIF<span>0.00</span>
+            MTIF<span>{employee.mtif}</span>
           </li>
         </ul>
       </DeductionsCol>
       <Total>
-        TOTAL: <span>5602.10</span>
+        TOTAL: <span>{employee.total}</span>
       </Total>
       <Total>
-        Net amount due: <span>22449.90</span>
+        Net amount due: <span>{employee.netAmountDue}</span>
       </Total>
       <Cutoff>
         <Salary>
-          1st Half: <span>11224.95</span>
+          1st Half: <span>{employee.firstHalf}</span>
         </Salary>
         <Salary>
-          2nd Half: <span>11224.95</span>
+          2nd Half: <span>{employee.secondHalf}</span>
         </Salary>
       </Cutoff>
     </StyledDeduction>

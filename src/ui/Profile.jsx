@@ -13,12 +13,28 @@ const StyledProfile = styled.div`
   padding: 0 1rem 1rem 1rem;
   border-radius: var(--border-radius-md);
 `;
-function Profile() {
+function Profile({
+  employeeNum,
+  salaryGrade,
+  step,
+  salary,
+  pera,
+  grossAmount,
+}) {
   const [hideInfo, setHideInfo] = useState(true);
   return (
     <StyledProfile>
-      <Position />
-      <Salary hideInfo={hideInfo} />
+      <Position
+        employeeNum={employeeNum}
+        salaryGrade={salaryGrade}
+        step={step}
+      />
+      <Salary
+        hideInfo={hideInfo}
+        salary={salary}
+        pera={pera}
+        grossAmount={grossAmount}
+      />
       <HideButton setHideInfo={setHideInfo} hideInfo={hideInfo} />
     </StyledProfile>
   );
