@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Form from "./AnnouncementForm";
+import Announcement from "../pages/Announcement";
 
 const StyledAddAnnouncement = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ function AddAnnouncement() {
   return (
     <StyledAddAnnouncement>
       <Form />
+      <Announcement />
     </StyledAddAnnouncement>
   );
 }

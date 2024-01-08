@@ -9,6 +9,9 @@ const StyledPosition = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  b {
+    font-size: 1.4rem;
+  }
 `;
 function Position({ employeeNum, salaryGrade, step }) {
   return (

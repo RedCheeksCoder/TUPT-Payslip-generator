@@ -3,6 +3,7 @@ import AnnouncementItem from "../ui/AnnouncementItem";
 import { useQuery } from "@tanstack/react-query";
 import { getAnnouncements } from "../services/apiAnnouncement";
 import Spinner from "../ui/Spinner";
+import { useAnnouncement } from "../App";
 
 const StyledAnnouncement = styled.div`
   display: flex;
@@ -40,17 +41,7 @@ const AnnouncementContainer = styled.div`
   }
 `;
 function Announcement() {
-  const {
-    isLoading,
-    data: announcements,
-    error,
-  } = useQuery({
-    queryKey: ["announcement"],
-    queryFn: getAnnouncements,
-  });
-
-  if (isLoading) return <Spinner />;
-  if (error) console.log("May Error");
+  const { announcements } = useAnnouncement();
   return (
     <StyledAnnouncement>
       <h1>Announcements</h1>

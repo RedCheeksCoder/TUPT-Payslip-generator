@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { IoIosClose } from "react-icons/io";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteAnnouncement } from "../services/apiAnnouncement";
 
 const StyledAnnouncementItem = styled.div`
   margin: 0.2rem;
@@ -13,6 +16,9 @@ const StyledAnnouncementItem = styled.div`
 `;
 
 const Title = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: var(--color-grey-100);
   background-color: var(--color-primary-800);
   border-top-left-radius: var(--border-radius-md);
@@ -20,6 +26,13 @@ const Title = styled.div`
   font-size: 1rem;
   padding: 1rem 2rem;
   font-weight: 600;
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--color-grey-400);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`
@@ -27,11 +40,25 @@ const Content = styled.div`
   font-size: 1.5rem;
   padding: 1rem;
 `;
+
 function AnnouncementItem({ announcement }) {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (id) => deleteAnnouncement(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["announcement"],
+      });
+    },
+  });
+
   return (
     <StyledAnnouncementItem>
       <Title>
-        <h1>{announcement.about}</h1>
+        <h1>{announcement.about} </h1>
+        <span onClick={() => mutate(announcement.id)}>
+          <IoIosClose />
+        </span>
       </Title>
       <Content>
         <p>Where: {announcement.location}</p>

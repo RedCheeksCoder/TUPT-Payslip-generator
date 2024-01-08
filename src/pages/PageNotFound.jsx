@@ -49,7 +49,7 @@ function PageNotFound() {
           searching for.
         </h1>
         <StyledNavLink to="/login">
-          <span>Home</span>
+          <span>Login</span>
         </StyledNavLink>
       </StyledPageNotFound>
     </>

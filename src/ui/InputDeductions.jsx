@@ -4,9 +4,10 @@ import EmployeeButton from "./EmployeeButton";
 const StyledDeduction = styled.div`
   font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
-  width: 100%;
+  width: 80%;
   margin-bottom: 2rem;
   position: relative;
+  left: 10%;
 
   h1,
   button {

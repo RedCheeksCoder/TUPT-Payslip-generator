@@ -3,33 +3,21 @@ import Deductions from "../ui/Deductions";
 import Button from "../ui/Button";
 
 const Container = styled.div`
-  padding-left: 2rem;
-  max-width: 100%;
+  max-width: 80%;
   position: relative;
   display: grid;
-  grid-template-columns: 70% 1fr;
+  justify-content: center;
+  align-items: center;
+  left: 10%;
+  grid-template-columns: 100% 1fr;
   @media (max-width: 1560px) {
     grid-template-columns: 100%;
   }
   margin-bottom: 3rem;
 `;
 
-const Description = styled.div`
-  padding: 0 3rem;
-  p {
-    font-size: 2rem;
-    color: var(--color-primary-900);
-    border-radius: var(--border-radius-md);
-    margin-top: 1rem;
-    line-height: 1.67;
-  }
-
-  @media (max-width: 1560px) {
-    display: none;
-  }
-`;
-
 const DeductionContainer = styled.div`
+  position: relative;
   button {
     margin-top: 2rem;
     position: absolute;
@@ -56,17 +44,6 @@ function Payslip() {
           DOWNLOAD PAYSLIP
         </Button>
       </DeductionContainer>
-      <Description>
-        <h1>Description</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quia
-          illo excepturi provident inventore dolorem dolor voluptate aliquam eum
-          natus, eius explicabo dolores ipsa et pariatur voluptatem ex sit quasi
-          id vero placeat ea laboriosam aliquid? Unde maxime, voluptate
-          perspiciatis iusto obcaecati, nobis nemo nesciunt aperiam natus
-          delectus, odio voluptas?
-        </p>
-      </Description>
     </Container>
   );
 }

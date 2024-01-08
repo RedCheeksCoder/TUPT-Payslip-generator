@@ -15,9 +15,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getEmployees } from "./services/apiEmployees";
 import Spinner from "./ui/Spinner";
+import { getAnnouncements } from "./services/apiAnnouncement";
 
 const EmployeeContext = createContext();
 const UserContext = createContext();
+const AnnouncementContext = createContext();
 function App() {
   /* LOG IN */
   const [token, setToken] = useState(null);
@@ -33,16 +35,21 @@ function App() {
     }
   }, []);
 
-  /* CONTEXT API */
-  const {
-    isLoading,
-    data: employees,
-    error,
-  } = useQuery({
+  const { isLoading: isLoadingEmployees, data: employees } = useQuery({
     queryKey: ["employees"],
     queryFn: getEmployees,
   });
-  if (isLoading) return <Spinner />;
+
+  const {
+    isLoading: isLoadingAnnouncements,
+    data: announcements,
+    error,
+  } = useQuery({
+    queryKey: ["announcement"],
+    queryFn: getAnnouncements,
+  });
+
+  if (isLoadingAnnouncements || isLoadingEmployees) return <Spinner />;
 
   return (
     <>
@@ -51,35 +58,43 @@ function App() {
       <UserContext.Provider value={{ userEmail }}>
         <EmployeeContext.Provider
           value={{
-            isLoading,
+            isLoading: isLoadingEmployees,
             employees,
             error,
           }}>
-          <BrowserRouter>
-            <Routes>
-              {userEmail ? (
-                <Route element={<AppLayOut />}>
-                  <Route index element={<Navigate replace to="payslip" />} />
-                  <Route path="announcement" element={<Announcement />} />
-                  <Route path="payslip" element={<Payslip />} />
-                  <Route path="admin" element={<Admin />} />
-                  <Route path="list" element={<EmployeeList />} />
-                  <Route path="addAnnouncement" element={<AddAnnouncement />} />
-                  <Route path="inputDeduction" element={<InputDeductions />} />
-                </Route>
-              ) : (
-                ""
-              )}
+          <AnnouncementContext.Provider value={{ announcements }}>
+            <BrowserRouter>
+              <Routes>
+                {userEmail ? (
+                  <Route element={<AppLayOut />}>
+                    <Route index element={<Navigate replace to="payslip" />} />
+                    <Route path="announcement" element={<Announcement />} />
+                    <Route path="payslip" element={<Payslip />} />
+                    <Route path="admin" element={<Admin />} />
+                    <Route path="list" element={<EmployeeList />} />
+                    <Route
+                      path="addAnnouncement"
+                      element={<AddAnnouncement />}
+                    />
+                    <Route
+                      path="inputDeduction"
+                      element={<InputDeductions />}
+                    />
+                  </Route>
+                ) : (
+                  ""
+                )}
 
-              <Route
-                path="login"
-                element={
-                  <Login setToken={setToken} setUserEmail={setUserEmail} />
-                }
-              />
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          </BrowserRouter>
+                <Route
+                  path="login"
+                  element={
+                    <Login setToken={setToken} setUserEmail={setUserEmail} />
+                  }
+                />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </AnnouncementContext.Provider>
         </EmployeeContext.Provider>
       </UserContext.Provider>
     </>
@@ -97,6 +112,12 @@ export function useUser() {
   if (userContext === undefined)
     throw new Error("PostContext was used outside of the PostProvider");
   return userContext;
+}
+export function useAnnouncement() {
+  const announcementContext = useContext(AnnouncementContext);
+  if (announcementContext === undefined)
+    throw new Error("PostContext was used outside of the PostProvider");
+  return announcementContext;
 }
 
 export default App;
