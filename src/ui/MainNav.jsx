@@ -86,6 +86,11 @@ function MainNav() {
             <span>Logout</span>
           </StyledNavLink>
         </li>
+        {/* <li>
+          <StyledNavLink to="/change-password">
+            <span>Change Password</span>
+          </StyledNavLink>
+        </li> */}
       </NavList>
     </StyledMainNav>
   );

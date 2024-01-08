@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useAnnouncement } from "../App";
 
 const StyledAnalytics = styled.div`
   padding: 2rem;
@@ -55,12 +56,14 @@ const RenewalAnalytics = styled(DownloadAnalytics)`
 `;
 
 function Analytics() {
+  const { announcements } = useAnnouncement();
+  const count = Object.keys(announcements).length;
   return (
     <StyledAnalytics>
       <h1>Analytics</h1>
       <AnalyticsContainer>
         <AnnouncementAnalytics>
-          <h1>5</h1>
+          <h1>{count}</h1>
           <p>Announcement Posted</p>
         </AnnouncementAnalytics>
         <DownloadAnalytics>

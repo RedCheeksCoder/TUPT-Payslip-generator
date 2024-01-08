@@ -1,13 +1,11 @@
-import Button from "./Button";
 import styled from "styled-components";
-import { FaTrashAlt } from "react-icons/fa";
-import { MdModeEditOutline } from "react-icons/md";
 
 const StyledEmployeeItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
   margin: 0.3rem 0;
   width: 100%;
   border: 1px solid var(--color-grey-300);
@@ -17,6 +15,7 @@ const StyledEmployeeItem = styled.div`
   font-size: 2rem;
   &:hover {
     background-color: var(--color-secondary-600);
+    cursor: pointer;
   }
   span {
     font-size: 1.3rem;
@@ -35,37 +34,22 @@ const StyledEmployeeItem = styled.div`
   }
 `;
 
-const ActionButton = styled.div`
-  display: flex;
-  gap: 0.3rem;
-  button {
-    &:hover {
-      background-color: var(--color-primary-600);
-      color: whitesmoke;
-    }
-  }
-`;
-function EmployeeItem({ employee }) {
+function EmployeeItem({ employee, onItemClick }) {
+  const handleItemClick = () => {
+    // Trigger the onItemClick callback with the employee data
+    onItemClick(employee);
+  };
   return (
-    <StyledEmployeeItem>
-      <p>
-        {employee.name}{" "}
-        <span>
-          <p>{employee.position}</p>
-        </span>
-      </p>
-
-      <ActionButton>
-        <Button variation="secondary" size="small">
-          {" "}
-          <MdModeEditOutline />
-        </Button>
-        <Button variation="secondary" size="small">
-          {" "}
-          <FaTrashAlt />
-        </Button>
-      </ActionButton>
-    </StyledEmployeeItem>
+    <>
+      <StyledEmployeeItem onClick={handleItemClick}>
+        <p>
+          {employee.name}{" "}
+          <span>
+            <p>{employee.position}</p>
+          </span>
+        </p>
+      </StyledEmployeeItem>
+    </>
   );
 }
 

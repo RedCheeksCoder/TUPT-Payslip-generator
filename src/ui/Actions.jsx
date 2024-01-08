@@ -29,7 +29,7 @@ function Actions() {
     <Container>
       <Greet />
       <StyledActions>
-        <StyledNavlink to="/list">
+        <StyledNavlink to="/search">
           <LiaFileInvoiceDollarSolid /> List of Employees
         </StyledNavlink>
         <StyledNavlink to="/addAnnouncement">

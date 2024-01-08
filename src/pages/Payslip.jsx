@@ -32,15 +32,14 @@ const DeductionContainer = styled.div`
     }
   }
 `;
-function Payslip() {
+
+function Payslip({ handleClick }) {
   return (
-    <Container>
+    <Container className="toPDF">
       <DeductionContainer>
         <h1>DEDUCTIONS</h1>
-
         <Deductions />
-
-        <Button variation="primary" size="large">
+        <Button variation="primary" size="large" onClick={handleClick}>
           DOWNLOAD PAYSLIP
         </Button>
       </DeductionContainer>

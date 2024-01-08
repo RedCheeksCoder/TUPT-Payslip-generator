@@ -1,34 +1,13 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import supabase from "../services/supabase";
 import styled from "styled-components";
-import toast from "react-hot-toast";
+import supabase from "../services/supabase";
 
-const LoginFormWrapper = styled.div`
+const StyledChangePassword = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 40vh;
-  width: 40vh;
-  border: 1px solid var(--color-grey-200);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background: transparent;
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  a {
-    color: var(--color-grey-400);
-    margin-top: 1rem;
-    &:hover {
-      transition: text-shadow 0.3s ease;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-  }
+  align-items: center;
 `;
 
 const Input = styled.input`
@@ -70,12 +49,12 @@ const Heading = styled.p`
   }
 `;
 
-const LoginForms = ({ setToken, setUserEmail }) => {
+function ChangePassword() {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    new_password: "",
   });
 
   function handleChange(event) {
@@ -95,10 +74,7 @@ const LoginForms = ({ setToken, setUserEmail }) => {
         email: formData.email,
         password: formData.password,
       });
-      setUserEmail(data.user.email);
 
-      if (error) throw error;
-      setToken(data);
       toast.success("Login successful!");
       navigate("/announcement");
 
@@ -107,24 +83,24 @@ const LoginForms = ({ setToken, setUserEmail }) => {
       toast.error("Username or password is wrong"); // Access the error message using 'error.message'
     }
   }
-
   return (
-    <LoginFormWrapper>
+    <StyledChangePassword>                                                 
       <form onSubmit={handleSubmit}>
         <Heading>
           TUP-Taguig <span>Payroll payment slip</span>
         </Heading>
         <Input placeholder="Email" name="email" onChange={handleChange} />
         <Input
-          placeholder="Password"
-          name="password"
+          placeholder="New Password"
+          name="new_password"
           type="password"
           onChange={handleChange}
         />
-        <LoginAsUserButton>Login</LoginAsUserButton>
+        <LoginAsUserButton>Submit</LoginAsUserButton>
       </form>
-    </LoginFormWrapper>
+    </StyledChangePassword>
   );
-};
+}
 
-export default LoginForms;
+export default ChangePassword;
+ */

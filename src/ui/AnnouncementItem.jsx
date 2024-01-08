@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IoIosClose } from "react-icons/io";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteAnnouncement } from "../services/apiAnnouncement";
+import toast from "react-hot-toast";
 
 const StyledAnnouncementItem = styled.div`
   margin: 0.2rem;
@@ -46,10 +47,12 @@ function AnnouncementItem({ announcement }) {
   const { mutate } = useMutation({
     mutationFn: (id) => deleteAnnouncement(id),
     onSuccess: () => {
+      toast.success("Announcement successfully deleted");
       queryClient.invalidateQueries({
         queryKey: ["announcement"],
       });
     },
+    onError: (err) => toast.error(err.message),
   });
 
   return (

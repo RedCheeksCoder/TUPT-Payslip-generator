@@ -1,13 +1,11 @@
-import { ImArrowRight } from "react-icons/im";
-import { ImArrowLeft } from "react-icons/im";
 import styled from "styled-components";
 import Button from "./Button";
+import { useSelectedUser } from "../App";
 
 const StyledEmployeeButton = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid var(--color-grey-200);
+  justify-content: center;
   padding: 1rem 2rem;
   font-size: 2rem;
   gap: 3rem;
@@ -29,14 +27,14 @@ const StyledEmployeeButton = styled.div`
     width: 100%;
   }
 `;
-function EmployeeButton() {
+function EmployeeButton({ handleSubmit }) {
+  const { selectedEmployee } = useSelectedUser();
   return (
     <StyledEmployeeButton>
-      <ImArrowLeft />
-      <Button variation="primary" size="large">
-        Update
+      <h1></h1>
+      <Button variation="primary" size="large" onClick={handleSubmit}>
+        Update - {selectedEmployee.name}
       </Button>
-      <ImArrowRight />
     </StyledEmployeeButton>
   );
 }

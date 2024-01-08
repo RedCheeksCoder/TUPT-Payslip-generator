@@ -1,11 +1,15 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import styled from "styled-components";
+import { addAnnouncement } from "../services/apiAnnouncement";
+import toast from "react-hot-toast";
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
   height: 40vh;
   width: 35vh;
   border: 1px solid var(--color-grey-200);
@@ -48,12 +52,12 @@ const Heading = styled.p`
   }
 `;
 
-const Form = () => {
+const AddAnnouncementForm = () => {
   const [formData, setFormData] = useState({
-    title: "",
+    about: "",
     location: "",
     date: "",
-    note: "",
+    time: "",
   });
 
   const handleChange = (e) => {
@@ -64,10 +68,29 @@ const Form = () => {
     }));
   };
 
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (formData) => addAnnouncement(formData),
+    onSuccess: () => {
+      toast.success("New announcement successfully added");
+      queryClient.invalidateQueries({
+        queryKey: ["announcement"],
+      });
+
+      // Reset the form after successful submission
+      setFormData({
+        about: "",
+        location: "",
+        date: "",
+        time: "",
+      });
+    },
+    onError: (err) => toast.error(err.message),
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
+    mutate(formData);
   };
 
   return (
@@ -79,7 +102,7 @@ const Form = () => {
         <Input
           type="text"
           placeholder="Title"
-          name="title"
+          name="about"
           value={formData.title}
           onChange={handleChange}
         />
@@ -99,8 +122,8 @@ const Form = () => {
         />
         <Input
           type="text"
-          placeholder="Note"
-          name="note"
+          placeholder="Time"
+          name="time"
           value={formData.note}
           onChange={handleChange}
         />
@@ -110,4 +133,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default AddAnnouncementForm;
