@@ -3,6 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteAnnouncement } from "../services/apiAnnouncement";
 import toast from "react-hot-toast";
+import { useUser } from "../App";
 
 const StyledAnnouncementItem = styled.div`
   margin: 0.2rem;
@@ -43,6 +44,7 @@ const Content = styled.div`
 `;
 
 function AnnouncementItem({ announcement }) {
+  const { userEmail } = useUser();
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: (id) => deleteAnnouncement(id),
@@ -59,9 +61,13 @@ function AnnouncementItem({ announcement }) {
     <StyledAnnouncementItem>
       <Title>
         <h1>{announcement.about} </h1>
-        <span onClick={() => mutate(announcement.id)}>
-          <IoIosClose />
-        </span>
+        {userEmail === "diane_feria@tup.edu.ph" ? (
+          <span onClick={() => mutate(announcement.id)}>
+            <IoIosClose />
+          </span>
+        ) : (
+          ""
+        )}
       </Title>
       <Content>
         <p>Where: {announcement.location}</p>

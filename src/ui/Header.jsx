@@ -13,7 +13,9 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <h1>TUP-Taguig Campus | Payroll payment slip generator</h1>
+      <h1>
+        TUP-Taguig Campus | <span>Payroll payment slip generator</span>
+      </h1>
       <h2>Payroll Period: January 2024</h2>
     </StyledHeader>
   );

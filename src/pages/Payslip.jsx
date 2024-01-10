@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Deductions from "../ui/Deductions";
 import Button from "../ui/Button";
+import PrintPdf from "../ui/PrintPdf";
+import { useEmployees, useUser } from "../App";
+import { findEmployeeByEmail } from "../helper/FindEmployee";
 
 const Container = styled.div`
   max-width: 80%;
@@ -33,12 +36,18 @@ const DeductionContainer = styled.div`
   }
 `;
 
-function Payslip({ handleClick }) {
+function Payslip() {
+  const { userEmail } = useUser();
+  const { employees } = useEmployees();
+  const employee = findEmployeeByEmail(employees, userEmail);
+  function handleClick() {
+    PrintPdf(employee);
+  }
   return (
     <Container className="toPDF">
       <DeductionContainer>
         <h1>DEDUCTIONS</h1>
-        <Deductions />
+        <Deductions employee={employee} />
         <Button variation="primary" size="large" onClick={handleClick}>
           DOWNLOAD PAYSLIP
         </Button>

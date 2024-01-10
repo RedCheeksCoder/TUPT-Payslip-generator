@@ -1,4 +1,4 @@
-// EmployeeSearch.js
+// FacultySearch.js
 import { useState } from "react";
 import EmployeeItem from "./EmployeeItem";
 import styled from "styled-components";
@@ -31,15 +31,13 @@ const Heading = styled.div`
   column-gap: 2rem;
 `;
 
-function EmployeeSearch() {
+function FacultySearch() {
   const navigate = useNavigate();
   const { employees } = useEmployees();
   const [searchTerm, setSearchTerm] = useState("");
   const { setSelectedEmployee } = useSelectedUser();
   const handleEmployeeClick = (employee) => {
     // Access the data of the clicked employee
-    console.log("Clicked employee:", employee);
-    // Perform any actions with the clicked employee data
     setSelectedEmployee(employee);
     navigate("/inputDeduction");
   };
@@ -77,4 +75,4 @@ function EmployeeSearch() {
   );
 }
 
-export default EmployeeSearch;
+export default FacultySearch;

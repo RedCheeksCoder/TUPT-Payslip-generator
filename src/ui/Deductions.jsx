@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useEmployees, useUser } from "../App";
-import { findEmployeeByEmail } from "../helper/FindEmployee";
 
 const StyledDeduction = styled.div`
   font-family: "Courier New", Courier, monospace;
@@ -92,10 +90,7 @@ const DeductionsCol = styled.div`
     }
   }
 `;
-function Deductions() {
-  const { userEmail } = useUser();
-  const { employees } = useEmployees();
-  const employee = findEmployeeByEmail(employees, userEmail);
+function Deductions({ employee }) {
   return (
     <StyledDeduction>
       <DeductionsCol>

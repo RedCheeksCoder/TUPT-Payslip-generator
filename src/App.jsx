@@ -8,6 +8,7 @@ import AppLayOut from "./ui/AppLayOut";
 import Announcement from "./pages/Announcement";
 import AddAnnouncement from "./ui/AddAnnouncement";
 import InputDeductions from "./ui/InputDeductions";
+import AdminSearch from "./ui/AdminSearch";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -16,9 +17,8 @@ import { getEmployees } from "./services/apiEmployees";
 import Spinner from "./ui/Spinner";
 import { getAnnouncements } from "./services/apiAnnouncement";
 import toast, { Toaster } from "react-hot-toast";
-import EmployeeSearch from "./ui/EmployeeSearch";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import FacultySearch from "./ui/FacultySearch";
+import ChangePassword from "./ui/ChangePassword";
 
 /* CONTEXTS */
 const EmployeeContext = createContext();
@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   const { isLoading: isLoadingEmployees, data: employees } = useQuery({
-    queryKey: ["employees"],
+    queryKey: ["faculty"],
     queryFn: getEmployees,
   });
 
@@ -58,19 +58,6 @@ function App() {
   });
 
   if (isLoadingAnnouncements || isLoadingEmployees) return <Spinner />;
-
-  /* Payslip saves as PDF */
-  function handleClick() {
-    const capture = document.querySelector(".toPDF");
-    html2canvas(capture).then((canvas) => {
-      const imgData = canvas.toDataURL("img/png");
-      const doc = new jsPDF("l", "mm", [320, 220]);
-      const width = doc.internal.pageSize.getWidth();
-      const height = doc.internal.pageSize.getHeight();
-      doc.addImage(imgData, "PNG", 0, 0, width, height);
-      doc.save("payslip.pdf");
-    });
-  }
 
   return (
     <>
@@ -90,17 +77,15 @@ function App() {
                 <Routes>
                   {userEmail ? (
                     <Route element={<AppLayOut />}>
-                      <Route
-                        index
-                        element={<Navigate replace to="payslip" />}
-                      />
                       <Route path="announcement" element={<Announcement />} />
-                      <Route
-                        path="payslip"
-                        element={<Payslip handleClick={handleClick} />}
-                      />
+                      <Route path="payslip" element={<Payslip />} />
                       <Route path="admin" element={<Admin />} />
-                      <Route path="search" element={<EmployeeSearch />} />
+                      <Route path="faculty" element={<FacultySearch />} />
+                      <Route path="admin" element={<AdminSearch />} />
+                      <Route
+                        path="change-password"
+                        element={<ChangePassword />}
+                      />
                       <Route
                         path="addAnnouncement"
                         element={<AddAnnouncement />}
@@ -114,6 +99,7 @@ function App() {
                     ""
                   )}
 
+                  <Route index element={<Navigate replace to="login" />} />
                   <Route
                     path="login"
                     element={

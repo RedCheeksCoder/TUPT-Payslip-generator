@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
+import { useUser } from "../App";
+
 import { IoIosLogOut } from "react-icons/io";
-import styled from "styled-components";
 import { GrDocumentPdf } from "react-icons/gr";
 import { HiCalendarDays, HiOutlineHome } from "react-icons/hi2";
-import { useUser } from "../App";
+import { RiLockPasswordLine } from "react-icons/ri";
+
+import styled from "styled-components";
 
 const NavList = styled.ul`
   display: flex;
@@ -81,16 +84,17 @@ function MainNav() {
         </li>
 
         <li>
+          <StyledNavLink to="/change-password">
+            <RiLockPasswordLine />
+            <span>Change Password</span>
+          </StyledNavLink>
+        </li>
+        <li>
           <StyledNavLink to="/login">
             <IoIosLogOut />
             <span>Logout</span>
           </StyledNavLink>
         </li>
-        {/* <li>
-          <StyledNavLink to="/change-password">
-            <span>Change Password</span>
-          </StyledNavLink>
-        </li> */}
       </NavList>
     </StyledMainNav>
   );

@@ -3,7 +3,6 @@ export function findEmployeeByEmail(employees, userEmail) {
   const foundEmployee = Object.values(employees).find(
     (employee) => employee.email === userEmail
   );
-  console.log(foundEmployee);
 
   if (foundEmployee) {
     return foundEmployee;

@@ -1,13 +1,13 @@
-/* import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
 import supabase from "../services/supabase";
+import toast from "react-hot-toast";
 
 const StyledChangePassword = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 const Input = styled.input`
@@ -49,11 +49,24 @@ const Heading = styled.p`
   }
 `;
 
-function ChangePassword() {
-  let navigate = useNavigate();
+const FormWrapper = styled.div`
+  padding: 2rem;
+  height: 40%;
+  width: 40%;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
+function ChangePassword() {
   const [formData, setFormData] = useState({
-    email: "",
     new_password: "",
   });
 
@@ -69,38 +82,36 @@ function ChangePassword() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
+    const { data, error } = await supabase.auth.updateUser({
+      password: formData.new_password,
+    });
+    console.log(data);
 
-      toast.success("Login successful!");
-      navigate("/announcement");
-
-      //   alert('Check your email for verification link')
-    } catch (error) {
-      toast.error("Username or password is wrong"); // Access the error message using 'error.message'
-    }
+    if (error) {
+      toast.error("Username or password is wrong");
+    } else toast.success("Changing password is successful");
   }
   return (
-    <StyledChangePassword>                                                 
-      <form onSubmit={handleSubmit}>
-        <Heading>
-          TUP-Taguig <span>Payroll payment slip</span>
-        </Heading>
-        <Input placeholder="Email" name="email" onChange={handleChange} />
-        <Input
-          placeholder="New Password"
-          name="new_password"
-          type="password"
-          onChange={handleChange}
-        />
-        <LoginAsUserButton>Submit</LoginAsUserButton>
-      </form>
+    <StyledChangePassword>
+      <FormWrapper>
+        <form onSubmit={handleSubmit}>
+          <Heading>Change Password</Heading>
+          <Input
+            placeholder="New password"
+            name="email"
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Confirm New Password"
+            name="new_password"
+            type="password"
+            onChange={handleChange}
+          />
+          <LoginAsUserButton>Submit</LoginAsUserButton>
+        </form>
+      </FormWrapper>
     </StyledChangePassword>
   );
 }
 
 export default ChangePassword;
- */

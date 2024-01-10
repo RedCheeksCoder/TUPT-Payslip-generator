@@ -1,6 +1,5 @@
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
 import { MdOutlineAnnouncement } from "react-icons/md";
-import { PiUsersFourLight } from "react-icons/pi";
 import styled from "styled-components";
 import Greet from "./Greet";
 import StyledNavlink from "./StyledNavlink";
@@ -29,14 +28,14 @@ function Actions() {
     <Container>
       <Greet />
       <StyledActions>
-        <StyledNavlink to="/search">
-          <LiaFileInvoiceDollarSolid /> List of Employees
+        <StyledNavlink to="/faculty">
+          <LiaFileInvoiceDollarSolid /> List of Faculty Members
+        </StyledNavlink>
+        <StyledNavlink to="/admin">
+          <LiaFileInvoiceDollarSolid /> List of Admin Members
         </StyledNavlink>
         <StyledNavlink to="/addAnnouncement">
           <MdOutlineAnnouncement /> Add Announcement
-        </StyledNavlink>
-        <StyledNavlink to="/inputDeduction">
-          <PiUsersFourLight /> Create Payroll Slip
         </StyledNavlink>
       </StyledActions>
     </Container>

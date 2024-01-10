@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import supabase from "./supabase";
 
 export async function getEmployees() {
-  let { data, error } = await supabase.from("employees").select("*");
+  let { data, error } = await supabase.from("faculty").select("*");
 
   if (error) {
     toast.error("Error on getting employees.");
@@ -12,10 +12,8 @@ export async function getEmployees() {
 }
 
 export async function updateEmployees(updatedDeduction, id) {
-  console.log(id);
-  console.log(updatedDeduction);
   const { data, error } = await supabase
-    .from("employees")
+    .from("faculty")
     .update(updatedDeduction)
     .eq("id", id);
   if (error) {
