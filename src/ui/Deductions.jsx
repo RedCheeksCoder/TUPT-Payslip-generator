@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const StyledDeduction = styled.div`
-  font-family: "Courier New", Courier, monospace;
-  font-size: 2rem;
+  font-family: "Poppins";
+  font-size: 1.8rem;
   width: 100%;
   margin-bottom: 2rem;
   @media (max-width: 780px) {
@@ -20,6 +20,7 @@ const Total = styled.h3`
   padding: 1rem;
   span {
     color: var(--color-primary-900);
+    margin-left: 1rem;
   }
   @media (max-width: 780px) {
     font-size: 1.5rem;
@@ -47,20 +48,25 @@ const Cutoff = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
   max-width: 100%;
   color: var(--color-primary-600);
   background-color: var(--color-secondary-700);
   border-radius: var(--border-radius-sm);
+  span {
+    margin-left: 1rem;
+  }
 `;
 
 const DeductionsCol = styled.div`
+  margin-bottom: 1rem;
   ul {
     display: grid;
     max-height: 70rem;
     overflow-y: auto;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 2rem;
+    gap: 0.3rem 2rem;
     @media (max-width: 1350px) {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -73,6 +79,7 @@ const DeductionsCol = styled.div`
   }
   li {
     display: flex;
+    border-radius: 5px;
     justify-content: space-between;
     outline: 1px solid var(--color-grey-200);
     padding: 0.5rem;
@@ -87,6 +94,7 @@ const DeductionsCol = styled.div`
 
     &:hover {
       background-color: var(--color-primary-200);
+      color: whitesmoke;
     }
   }
 `;

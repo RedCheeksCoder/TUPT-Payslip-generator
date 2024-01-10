@@ -15,13 +15,11 @@ const Container = styled.div`
   @media (max-width: 1560px) {
     grid-template-columns: 100%;
   }
-  margin-bottom: 3rem;
 `;
 
 const DeductionContainer = styled.div`
   position: relative;
   button {
-    margin-top: 2rem;
     position: absolute;
     right: 0;
   }

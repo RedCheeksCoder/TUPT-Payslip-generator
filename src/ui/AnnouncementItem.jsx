@@ -35,6 +35,9 @@ const Title = styled.div`
     transition: all 0.3s;
     cursor: pointer;
   }
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const Content = styled.div`

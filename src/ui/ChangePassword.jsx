@@ -51,8 +51,8 @@ const Heading = styled.p`
 
 const FormWrapper = styled.div`
   padding: 2rem;
-  height: 40%;
-  width: 40%;
+  height: 25rem;
+  width: 50rem;
   border: 1px solid var(--color-grey-200);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -62,6 +62,13 @@ const FormWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  @media (max-width: 500px) {
+    height: 30rem;
+    font-size: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    width: 90%;
   }
 `;
 

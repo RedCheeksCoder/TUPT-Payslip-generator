@@ -16,6 +16,13 @@ const FormWrapper = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background: transparent;
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Input = styled.input`
@@ -33,12 +40,12 @@ const Button = styled.button`
   padding: 10px;
   border: 1px solid var(--color-grey-200);
   border-radius: 5px;
-  background: transparent;
+  background-color: var(--color-primary-600);
+  color: whitesmoke;
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-primary-600);
-    color: whitesmoke;
+    background-color: var(--color-primary-900);
   }
 `;
 
@@ -95,9 +102,7 @@ const AddAnnouncementForm = () => {
 
   return (
     <FormWrapper>
-      <Heading>
-        TUP-Taguig <span>Payroll payment slip</span>
-      </Heading>
+      <Heading>Add announcement form</Heading>
       <form onSubmit={handleSubmit}>
         <Input
           type="text"

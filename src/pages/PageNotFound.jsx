@@ -2,26 +2,34 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const StyledPageNotFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: var(--color-grey-100);
   height: 100dvh;
-
   img {
-    height: 100%;
-    width: 100%;
-    object-fit: scale-down;
+    position: fixed;
+    bottom: 0;
+    height: 45%;
   }
-  h1 {
-    position: absolute;
-    top: 20rem;
-    left: 50rem;
-    max-width: 55%;
+  p {
+    font-size: 3rem;
+    max-width: 40%;
+    font-weight: 500;
+    text-align: center;
+    color: #a5a4a4;
+    @media (max-width: 900px) {
+      font-size: 2rem;
+      max-width: 70%;
+    }
   }
 `;
 
 const StyledNavLink = styled(NavLink)`
-  position: absolute;
-  top: 37rem;
-  left: 50rem;
+  margin-top: 2rem;
+  z-index: 10;
+  cursor: pointer;
   &:link,
   &:visited {
     display: flex;
@@ -41,16 +49,16 @@ function PageNotFound() {
   return (
     <>
       <StyledPageNotFound>
-        <img src="/sad-dog-head-only.png" alt="" />
-        <h1>
-          404 Page not found <br />
+        <h1>404 Page not found</h1>
+        <p>
           You must have picked the wrong door because I haven<span>&#39;</span>t
           been able to lay my eye on the page you<span>&#39;</span>ve been
           searching for.
-        </h1>
+        </p>
         <StyledNavLink to="/login">
           <span>Login</span>
         </StyledNavLink>
+        <img src="/sad-dog.png" alt="" />
       </StyledPageNotFound>
     </>
   );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PayrollMonth from "./PayrollMonth";
 
 const StyledHeader = styled.header`
   background-color: var(--color-tertiary-900);
@@ -8,15 +9,21 @@ const StyledHeader = styled.header`
     font-size: 1rem;
     padding: 1.2rem 3rem;
   }
+  h2 {
+    color: var(--color-grey-500);
+  }
 `;
 
 function Header() {
+  const { currentMonth, currentYear } = PayrollMonth();
   return (
     <StyledHeader>
       <h1>
         TUP-Taguig Campus | <span>Payroll payment slip generator</span>
       </h1>
-      <h2>Payroll Period: January 2024</h2>
+      <h2>
+        Payroll Period: {currentMonth} {currentYear}
+      </h2>
     </StyledHeader>
   );
 }

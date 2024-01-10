@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import AnnouncementItem from "../ui/AnnouncementItem";
-import { useQuery } from "@tanstack/react-query";
-import { getAnnouncements } from "../services/apiAnnouncement";
-import Spinner from "../ui/Spinner";
 import { useAnnouncement } from "../App";
+import StyledNavlink from "../ui/StyledNavlink";
+import { MdOutlineAnnouncement } from "react-icons/md";
 
 const StyledAnnouncement = styled.div`
   display: flex;
@@ -12,6 +11,11 @@ const StyledAnnouncement = styled.div`
   align-items: center;
   button {
     margin: 2rem;
+  }
+  @media (max-width: 780px) {
+    h1 {
+      font-size: 1.8rem;
+    }
   }
 `;
 
@@ -50,6 +54,9 @@ function Announcement() {
           <AnnouncementItem announcement={announcement} key={announcement.id} />
         ))}
       </AnnouncementContainer>
+      <StyledNavlink to="/addAnnouncement">
+        <MdOutlineAnnouncement /> Add Announcement
+      </StyledNavlink>
     </StyledAnnouncement>
   );
 }

@@ -19,9 +19,9 @@ const StyledDeduction = styled.div`
     font-family: "Poppins";
   }
 
-  h1 {
-    @media (max-width: 600px) {
-      font-size: 3rem;
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
     }
   }
 `;
@@ -104,50 +104,54 @@ const InputTotal = styled.div`
 function InputDeductions() {
   const { selectedEmployee: employee } = useSelectedUser();
   const [updatedDeduction, setUpdatedDeduction] = useState({
-    refSal: "",
-    refPeraAda: "",
-    disallowance: "",
-    wTax: "",
-    philHealth: "",
-    lifeAndRetirement: "",
-    gsisReceivables: "",
-    gsisOptLoan: "",
-    gsisRestructured: "",
-    trainMethProg: "",
-    gsisSalLoan: "",
-    gsisPolLoan: "",
-    gsisLowCost: "",
-    gsisEmerLoan: "",
-    gsisHip: "",
-    pagibigMpl: "",
-    carSticker: "",
-    hdmfCont: "",
-    pagibigEmer: "",
-    dorm: "",
-    landbank: "",
-    nhmfc: "",
-    gsisEducLoan: "",
-    gsisEnhanced: "",
-    gsisConsoLoan: "",
-    mplTup: "",
-    tupfa: "",
-    gsisEcard: "",
-    tupteaHcard: "",
-    hdmfMp2: "",
-    coop: "",
-    gsisOpsIns: "",
-    mtif: "",
-    total: "",
-    netAmountDue: "",
-    firstHalf: "",
-    secondHalf: "",
+    refSal: "0.00",
+    refPeraAda: "0.00",
+    disallowance: "0.00",
+    wTax: "0.00",
+    philHealth: "0.00",
+    lifeAndRetirement: "0.00",
+    gsisReceivables: "0.00",
+    gsisOptLoan: "0.00",
+    gsisRestructured: "0.00",
+    trainMethProg: "0.00",
+    gsisSalLoan: "0.00",
+    gsisPolLoan: "0.00",
+    gsisLowCost: "0.00",
+    gsisEmerLoan: "0.00",
+    gsisHip: "0.00",
+    pagibigMpl: "0.00",
+    carSticker: "0.00",
+    hdmfCont: "0.00",
+    pagibigEmer: "0.00",
+    dorm: "0.00",
+    landbank: "0.00",
+    nhmfc: "0.00",
+    gsisEducLoan: "0.00",
+    gsisEnhanced: "0.00",
+    gsisConsoLoan: "0.00",
+    mplTup: "0.00",
+    tupfa: "0.00",
+    gsisEcard: "0.00",
+    tupteaHcard: "0.00",
+    hdmfMp2: "0.00",
+    coop: "0.00",
+    gsisOpsIns: "0.00",
+    mtif: "0.00",
+    total: "0.00",
+    netAmountDue: "0.00",
+    firstHalf: "0.00",
+    secondHalf: "0.00",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // If the value is an empty string, set it to "0.00"
+    const sanitizedValue = value === "" || 0 ? "0.00" : value;
+
     setUpdatedDeduction((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: sanitizedValue,
     }));
   };
 
@@ -161,7 +165,6 @@ function InputDeductions() {
         : updateAdmin(updatedDeduction, toUpdateId),
 
     onSuccess: () => {
-      toast.success(`Informatioon of ${employee.name} has been updated!`);
       queryClient.invalidateQueries({
         queryKey: [employee.role === "faculty" ? "faculty" : "admin"],
       });
@@ -171,8 +174,18 @@ function InputDeductions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    checkValues(updatedDeduction);
     mutate({ updatedDeduction, toUpdateId });
   };
+
+  function checkValues(object) {
+    Object.entries(object).map(([key, value]) => {
+      if (!value) {
+        console.log(`Value for key "${key}" is missing.`);
+      }
+      return null; // to satisfy the map function, as it expects a return value
+    });
+  }
 
   return (
     <StyledDeduction>

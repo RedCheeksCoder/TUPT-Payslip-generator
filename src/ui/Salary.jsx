@@ -19,20 +19,20 @@ function Salary({ hideInfo, salary, pera, grossAmount }) {
     <StyledSalary>
       <p>
         <span>Monthly Salary: </span>
-        <b>{`${hideInfo ? "*****" : salary} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : salary}`}</b>
       </p>
       <p>
         <span>P.E.R.A.: </span>
-        <b>{`${hideInfo ? "*****" : pera} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : pera}`}</b>
       </p>
       <p>
         <span>AdCom: </span>
-        <b>{`${hideInfo ? "*****" : "0.00"} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : "0.00"}`}</b>
       </p>
       <hr />
       <p>
         <span>Gross Amount Due: </span>
-        <b>{`${hideInfo ? "*****" : grossAmount} PHP`}</b>
+        <b>{`${hideInfo ? "*****" : grossAmount}`}</b>
       </p>
     </StyledSalary>
   );

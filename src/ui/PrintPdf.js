@@ -1,11 +1,14 @@
 import jsPDF from "jspdf";
+import PayrollMonth from "./PayrollMonth";
 
 function PrintPdf(employee) {
-  const doc = new jsPDF("l", "mm", "letter");
+  const { currentMonth, currentYear } = PayrollMonth();
+  console.log(currentMonth, currentYear);
+  const doc = new jsPDF("l", "mm", [180, 235]);
   doc.setFont("courier").setFontSize(10);
   doc.text("TUP-Taguig Campus", 110, 10);
   doc.text("DIGITAL PAYROLL PAYMENT SLIP", 110, 15);
-  doc.text("Payroll Period - January 2024", 110, 20);
+  doc.text(`Payroll Period - ${currentMonth} ${currentYear}`, 110, 20);
   doc.text(`Department: ${employee.budgetRef}`, 10, 35);
   doc.text(
     `Employee number: ${employee.employeeNum} - SG${employee.salaryGrade} - STEP: ${employee.step}`,

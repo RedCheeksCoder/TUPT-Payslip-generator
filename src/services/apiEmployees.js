@@ -25,8 +25,10 @@ export async function updateEmployees(updatedDeduction, id) {
     .update(updatedDeduction)
     .eq("id", id);
   if (error) {
-    toast.error("Error on updating employees.");
-  }
+    toast.error(
+      "Error on updating employees. Please complete all information."
+    );
+  } else toast.success(`Information has been successfully updated!`);
 
   return data;
 }
@@ -37,8 +39,10 @@ export async function updateAdmin(updatedDeduction, id) {
     .update(updatedDeduction)
     .eq("id", id);
   if (error) {
-    toast.error("Error on updating employees.");
-  }
+    toast.error(
+      "Error on updating employees. Please complete all information."
+    );
+  } else toast.success(`Information has been successfully updated!`);
 
   return data;
 }

@@ -28,7 +28,18 @@ const SearchContainer = styled.div`
 
 const Heading = styled.div`
   display: flex;
+  align-items: center;
   column-gap: 2rem;
+  @media (max-width: 780px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    input {
+      height: 3rem;
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 function EmployeeSearch() {

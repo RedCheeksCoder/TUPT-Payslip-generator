@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useUser } from "../App";
 
 const StyledGreet = styled.h1`
   margin-left: 2rem;
@@ -7,9 +8,11 @@ const StyledGreet = styled.h1`
   }
 `;
 function Greet() {
+  const { userEmail } = useUser();
   return (
     <StyledGreet>
-      Welcome, Ma<span>&#39;</span>am Dianne!
+      Welcome,{" "}
+      {userEmail === "diane_feria@tup.edu.ph" ? "Ma'am Diane!" : "Sir Ken!"}
     </StyledGreet>
   );
 }

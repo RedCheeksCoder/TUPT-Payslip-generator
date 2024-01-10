@@ -13,8 +13,8 @@ const StyledSpinner = styled.div`
   height: 40px;
   animation: ${spinAnimation} 1s linear infinite;
   position: absolute;
-  right: 40%;
-  top: 42%;
+  right: 50%;
+  top: 50%;
 `;
 
 const Spinner = () => {

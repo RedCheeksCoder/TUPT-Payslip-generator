@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import BottomNav from "./BottomNav";
 import styled from "styled-components";
 
 const StyledAppLayOut = styled.div`
@@ -20,16 +21,15 @@ const Main = styled.main`
   }
 `;
 
-
-
 function AppLayOut({ token }) {
   return (
-    <StyledAppLayOut >
+    <StyledAppLayOut>
       <Header />
       <Sidebar token={token} />
       <Main>
         <Outlet />
       </Main>
+      <BottomNav />
     </StyledAppLayOut>
   );
 }
