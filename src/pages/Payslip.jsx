@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Deductions from "../ui/Deductions";
 import Button from "../ui/Button";
 import PrintPdf from "../ui/PrintPdf";
-import { useEmployees, useUser } from "../App";
-import { findEmployeeByEmail } from "../helper/FindEmployee";
+import CurrentUser from "../helper/CurrentUser";
 
 const Container = styled.div`
   max-width: 80%;
@@ -37,14 +36,13 @@ const DeductionContainer = styled.div`
 `;
 
 function Payslip() {
-  const { userEmail } = useUser();
-  const { employees } = useEmployees();
-  const employee = findEmployeeByEmail(employees, userEmail);
+  const employee = CurrentUser();
+  console.log(employee);
   function handleClick() {
     PrintPdf(employee);
   }
   return (
-    <Container className="toPDF">
+    <Container>
       <DeductionContainer>
         <h1>DEDUCTIONS</h1>
         <Deductions employee={employee} />

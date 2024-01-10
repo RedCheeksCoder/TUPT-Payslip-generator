@@ -1,9 +1,9 @@
-// FacultySearch.js
+// EmployeeSearch.js
 import { useState } from "react";
 import EmployeeItem from "./EmployeeItem";
 import styled from "styled-components";
 import { useEmployees, useSelectedUser } from "../App";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const StyledEmployeeList = styled.div`
   display: grid;
@@ -31,13 +31,13 @@ const Heading = styled.div`
   column-gap: 2rem;
 `;
 
-function FacultySearch() {
+function EmployeeSearch() {
+  const { toDisplay } = useParams();
   const navigate = useNavigate();
-  const { employees } = useEmployees();
+  const { faculty, admins } = useEmployees();
   const [searchTerm, setSearchTerm] = useState("");
   const { setSelectedEmployee } = useSelectedUser();
   const handleEmployeeClick = (employee) => {
-    // Access the data of the clicked employee
     setSelectedEmployee(employee);
     navigate("/inputDeduction");
   };
@@ -46,9 +46,18 @@ function FacultySearch() {
     setSearchTerm(event.target.value);
   }
 
-  const filteredEmployees = employees.filter((employee) =>
+  /* const filteredEmployees = admins.filter((employee) =>
     employee.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ); */
+
+  const filterEmployeesByRole = (role, searchTerm) => {
+    const employees = role === "admin" ? admins : faculty;
+    return employees.filter((employee) =>
+      employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  const filteredEmployees = filterEmployeesByRole(toDisplay, searchTerm);
 
   return (
     <SearchContainer>
@@ -62,7 +71,6 @@ function FacultySearch() {
         />
       </Heading>
       <StyledEmployeeList>
-        {/* Display the filtered employees */}
         {filteredEmployees.map((employee) => (
           <EmployeeItem
             employee={employee}
@@ -75,4 +83,4 @@ function FacultySearch() {
   );
 }
 
-export default FacultySearch;
+export default EmployeeSearch;

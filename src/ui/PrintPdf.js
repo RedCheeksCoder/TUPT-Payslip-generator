@@ -6,7 +6,7 @@ function PrintPdf(employee) {
   doc.text("TUP-Taguig Campus", 110, 10);
   doc.text("DIGITAL PAYROLL PAYMENT SLIP", 110, 15);
   doc.text("Payroll Period - January 2024", 110, 20);
-  doc.text("Department: ", 10, 35);
+  doc.text(`Department: ${employee.budgetRef}`, 10, 35);
   doc.text(
     `Employee number: ${employee.employeeNum} - SG${employee.salaryGrade} - STEP: ${employee.step}`,
     10,
@@ -145,8 +145,13 @@ function PrintPdf(employee) {
 
   doc.text("=========", 200, 145);
 
-  doc.text("Prepared by: Diana Rose F. Daliva", 15, 155);
-  doc.text("Admin Aide Vi", 35, 160);
+  if (employee.role === "faculty") {
+    doc.text("Prepared by: Diana Rose F. Daliva", 15, 155);
+    doc.text("Admin Aide Vi", 35, 160);
+  } else {
+    doc.text("Prepared by: Kenn Gilbert A. Senosa", 15, 155);
+    doc.text("Admin Aide Vi", 35, 160);
+  }
 
   doc.text("Certified Correct: Ma. LIZETTE G. PEÑA", 100, 155);
   doc.text("Administrative Officer V - HR Mgt.", 100, 160);

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import User from "./User";
 import Profile from "./Profile";
 import MainNav from "./MainNav";
-import { useEmployees, useUser } from "../App";
-import { findEmployeeByEmail } from "../helper/FindEmployee";
+import CurrentUser from "../helper/CurrentUser";
+import { useUser } from "../App";
 const StyledSidebar = styled.aside`
   background-color: var(--color-primary-900);
   padding: 3.2rem 2.4rem;
@@ -15,8 +15,7 @@ const StyledSidebar = styled.aside`
 `;
 function Sidebar() {
   const { userEmail } = useUser();
-  const { employees } = useEmployees();
-  const employee = findEmployeeByEmail(employees, userEmail);
+  const employee = CurrentUser();
   return (
     <StyledSidebar>
       <User

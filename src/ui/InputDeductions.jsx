@@ -4,10 +4,10 @@ import { useSelectedUser } from "../App";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { updateEmployees } from "../services/apiEmployees";
+import { updateAdmin, updateEmployees } from "../services/apiEmployees";
 
 const StyledDeduction = styled.div`
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Poppins";
   font-size: 2rem;
   width: 80%;
   margin-bottom: 2rem;
@@ -52,7 +52,7 @@ const InputDeductionsCol = styled.div`
     outline: 1px solid var(--color-grey-200);
     padding: 0.5rem;
     cursor: pointer;
-
+    font-size: 1.7rem;
     @media (max-width: 1560px) {
       cursor: none;
     }
@@ -156,18 +156,19 @@ function InputDeductions() {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: ({ updatedDeduction, toUpdateId }) =>
-      updateEmployees(updatedDeduction, toUpdateId),
+      employee.role === "faculty"
+        ? updateEmployees(updatedDeduction, toUpdateId)
+        : updateAdmin(updatedDeduction, toUpdateId),
 
     onSuccess: () => {
       toast.success(`Informatioon of ${employee.name} has been updated!`);
       queryClient.invalidateQueries({
-        queryKey: ["employees"],
+        queryKey: [employee.role === "faculty" ? "faculty" : "admin"],
       });
     },
     onError: (err) => toast.error(err.message),
   });
-  console.log(updatedDeduction);
-  console.log(toUpdateId);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     mutate({ updatedDeduction, toUpdateId });

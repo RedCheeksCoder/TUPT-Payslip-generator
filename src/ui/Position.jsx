@@ -10,7 +10,7 @@ const StyledPosition = styled.div`
     justify-content: space-between;
   }
   b {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 `;
 function Position({ employeeNum, salaryGrade, step }) {

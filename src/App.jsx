@@ -8,17 +8,16 @@ import AppLayOut from "./ui/AppLayOut";
 import Announcement from "./pages/Announcement";
 import AddAnnouncement from "./ui/AddAnnouncement";
 import InputDeductions from "./ui/InputDeductions";
-import AdminSearch from "./ui/AdminSearch";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getEmployees } from "./services/apiEmployees";
+import { getAdmin, getFaculty } from "./services/apiEmployees";
 import Spinner from "./ui/Spinner";
 import { getAnnouncements } from "./services/apiAnnouncement";
 import toast, { Toaster } from "react-hot-toast";
-import FacultySearch from "./ui/FacultySearch";
 import ChangePassword from "./ui/ChangePassword";
+import EmployeeSearch from "./ui/EmployeeSearch";
 
 /* CONTEXTS */
 const EmployeeContext = createContext();
@@ -43,9 +42,13 @@ function App() {
     }
   }, []);
 
-  const { isLoading: isLoadingEmployees, data: employees } = useQuery({
+  const { isLoading: isLoadingAdmin, data: admins } = useQuery({
+    queryKey: ["admin"],
+    queryFn: getAdmin,
+  });
+  const { isLoading: isLoadingFaculty, data: faculty } = useQuery({
     queryKey: ["faculty"],
-    queryFn: getEmployees,
+    queryFn: getFaculty,
   });
 
   const {
@@ -57,7 +60,8 @@ function App() {
     queryFn: getAnnouncements,
   });
 
-  if (isLoadingAnnouncements || isLoadingEmployees) return <Spinner />;
+  if (isLoadingAnnouncements || isLoadingAdmin || isLoadingFaculty)
+    return <Spinner />;
 
   return (
     <>
@@ -66,8 +70,10 @@ function App() {
       <UserContext.Provider value={{ userEmail }}>
         <EmployeeContext.Provider
           value={{
-            isLoading: isLoadingEmployees,
-            employees,
+            isLoadingFaculty,
+            faculty,
+            isLoadingAdmin,
+            admins,
             error,
           }}>
           <AnnouncementContext.Provider value={{ announcements }}>
@@ -79,9 +85,11 @@ function App() {
                     <Route element={<AppLayOut />}>
                       <Route path="announcement" element={<Announcement />} />
                       <Route path="payslip" element={<Payslip />} />
-                      <Route path="admin" element={<Admin />} />
-                      <Route path="faculty" element={<FacultySearch />} />
-                      <Route path="admin" element={<AdminSearch />} />
+                      <Route path="adminpanel" element={<Admin />} />
+                      <Route
+                        path="adminpanel/:toDisplay"
+                        element={<EmployeeSearch />}
+                      />
                       <Route
                         path="change-password"
                         element={<ChangePassword />}

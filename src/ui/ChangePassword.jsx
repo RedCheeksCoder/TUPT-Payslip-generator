@@ -104,7 +104,7 @@ function ChangePassword() {
           <Input
             placeholder="Confirm New Password"
             name="new_password"
-            type="password"
+            type="text"
             onChange={handleChange}
           />
           <LoginAsUserButton>Submit</LoginAsUserButton>

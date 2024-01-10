@@ -103,7 +103,7 @@ const AddAnnouncementForm = () => {
           type="text"
           placeholder="Title"
           name="about"
-          value={formData.title}
+          value={formData.about}
           onChange={handleChange}
         />
         <Input
@@ -124,7 +124,7 @@ const AddAnnouncementForm = () => {
           type="text"
           placeholder="Time"
           name="time"
-          value={formData.note}
+          value={formData.time}
           onChange={handleChange}
         />
         <Button type="submit">Submit</Button>

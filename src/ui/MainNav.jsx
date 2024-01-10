@@ -63,7 +63,7 @@ function MainNav() {
       <NavList>
         {userEmail === "diane_feria@tup.edu.ph" ? (
           <li>
-            <StyledNavLink to="/admin">
+            <StyledNavLink to="/adminpanel">
               <HiOutlineHome />
               <span>Home</span>
             </StyledNavLink>

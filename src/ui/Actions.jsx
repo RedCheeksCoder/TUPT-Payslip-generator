@@ -28,10 +28,10 @@ function Actions() {
     <Container>
       <Greet />
       <StyledActions>
-        <StyledNavlink to="/faculty">
+        <StyledNavlink to="faculty">
           <LiaFileInvoiceDollarSolid /> List of Faculty Members
         </StyledNavlink>
-        <StyledNavlink to="/admin">
+        <StyledNavlink to="admin">
           <LiaFileInvoiceDollarSolid /> List of Admin Members
         </StyledNavlink>
         <StyledNavlink to="/addAnnouncement">
