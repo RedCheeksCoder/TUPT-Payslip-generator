@@ -104,49 +104,44 @@ const InputTotal = styled.div`
 function InputDeductions() {
   const { selectedEmployee: employee } = useSelectedUser();
   const [updatedDeduction, setUpdatedDeduction] = useState({
-    refSal: "0.00",
-    refPeraAda: "0.00",
-    disallowance: "0.00",
-    wTax: "0.00",
-    philHealth: "0.00",
-    lifeAndRetirement: "0.00",
-    gsisReceivables: "0.00",
-    gsisOptLoan: "0.00",
-    gsisRestructured: "0.00",
-    trainMethProg: "0.00",
-    gsisSalLoan: "0.00",
-    gsisPolLoan: "0.00",
-    gsisLowCost: "0.00",
-    gsisEmerLoan: "0.00",
-    gsisHip: "0.00",
-    pagibigMpl: "0.00",
-    carSticker: "0.00",
-    hdmfCont: "0.00",
-    pagibigEmer: "0.00",
-    dorm: "0.00",
-    landbank: "0.00",
-    nhmfc: "0.00",
-    gsisEducLoan: "0.00",
-    gsisEnhanced: "0.00",
-    gsisConsoLoan: "0.00",
-    mplTup: "0.00",
-    tupfa: "0.00",
-    gsisEcard: "0.00",
-    tupteaHcard: "0.00",
-    hdmfMp2: "0.00",
-    coop: "0.00",
-    gsisOpsIns: "0.00",
-    mtif: "0.00",
-    total: "0.00",
-    netAmountDue: "0.00",
-    firstHalf: "0.00",
-    secondHalf: "0.00",
+    wTax: employee.wTax,
+    philHealth: employee.philHealth,
+    lifeAndRetirement: employee.lifeAndRetirement,
+    gsisReceivables: employee.gsisReceivables,
+    gsisOptLoan: employee.gsisOptLoan,
+    gsisRestructured: employee.gsisRestructured,
+    trainMethProg: employee.trainMethProg,
+    gsisSalLoan: employee.gsisSalLoan,
+    gsisPolLoan: employee.gsisPolLoan,
+    gsisLowCost: employee.gsisLowCost,
+    gsisEmerLoan: employee.gsisEmerLoan,
+    gsisHip: employee.gsisHip,
+    pagibigMpl: employee.pagibigMpl,
+    carSticker: employee.carSticker,
+    hdmfCont: employee.hdmfCont,
+    pagibigEmer: employee.pagibigEmer,
+    dorm: employee.dorm,
+    landbank: employee.landbank,
+    nhmfc: employee.nhmfc,
+    gsisEducLoan: employee.gsisEducLoan,
+    gsisEnhanced: employee.gsisEnhanced,
+    gsisConsoLoan: employee.gsisConsoLoan,
+    mplTup: employee.mplTup,
+    tupfa: employee.tupfa,
+    gsisEcard: employee.gsisEcard,
+    tupteaHcard: employee.tupteaHcard,
+    hdmfMp2: employee.hdmfMp2,
+    coop: employee.coop,
+    gsisOpsIns: employee.gsisOpsIns,
+    mtif: employee.mtif,
+    total: employee.total,
+    netAmountDue: employee.netAmountDue,
+    firstHalf: employee.firstHalf,
+    secondHalf: employee.secondHalf,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // If the value is an empty string, set it to "0.00"
     const sanitizedValue = value === "" || 0 ? "0.00" : value;
 
     setUpdatedDeduction((prevData) => ({
@@ -198,7 +193,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="refSal"
-                // defaultValue={employee.refSal}
+                defaultValue={employee.refSal}
                 required
                 onChange={handleChange}
               />
@@ -210,7 +205,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="refPeraAda"
-                // defaultValue={employee.refPeraAda}
+                defaultValue={employee.refPeraAda}
                 required
                 onChange={handleChange}
               />
@@ -222,7 +217,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="disallowance"
-                // defaultValue={employee.disallowance}
+                defaultValue={employee.disallowance}
                 required
                 onChange={handleChange}
               />
@@ -234,7 +229,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="wTax"
-                // defaultValue={employee.wTax}
+                defaultValue={employee.wTax}
                 required
                 onChange={handleChange}
               />
@@ -246,7 +241,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="philHealth"
-                // defaultValue={employee.philHealth}
+                defaultValue={employee.philHealth}
                 required
                 onChange={handleChange}
               />
@@ -258,7 +253,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="lifeAndRetirement"
-                // defaultValue={employee.lifeAndRetirement}
+                defaultValue={employee.lifeAndRetirement}
                 required
                 onChange={handleChange}
               />
@@ -270,7 +265,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisReceivables"
-                // defaultValue={employee.gsisReceivables}
+                defaultValue={employee.gsisReceivables}
                 required
                 onChange={handleChange}
               />
@@ -282,7 +277,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisOptLoan"
-                // defaultValue={employee.gsisOptLoan}
+                defaultValue={employee.gsisOptLoan}
                 required
                 onChange={handleChange}
               />
@@ -294,7 +289,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisRestructured"
-                // defaultValue={employee.gsisRestructured}
+                defaultValue={employee.gsisRestructured}
                 required
                 onChange={handleChange}
               />
@@ -306,7 +301,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="trainMethProg"
-                // defaultValue={employee.trainMethProg}
+                defaultValue={employee.trainMethProg}
                 required
                 onChange={handleChange}
               />
@@ -318,7 +313,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisSalLoan"
-                // defaultValue={employee.gsisSalLoan}
+                defaultValue={employee.gsisSalLoan}
                 required
                 onChange={handleChange}
               />
@@ -330,7 +325,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisPolLoan"
-                // defaultValue={employee.gsisPolLoan}
+                defaultValue={employee.gsisPolLoan}
                 required
                 onChange={handleChange}
               />
@@ -342,7 +337,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisLowCost"
-                // defaultValue={employee.gsisLowCost}
+                defaultValue={employee.gsisLowCost}
                 required
                 onChange={handleChange}
               />
@@ -354,7 +349,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisEmerLoan"
-                // defaultValue={employee.gsisEmerLoan}
+                defaultValue={employee.gsisEmerLoan}
                 required
                 onChange={handleChange}
               />
@@ -366,7 +361,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisHip"
-                // defaultValue={employee.gsisHip}
+                defaultValue={employee.gsisHip}
                 required
                 onChange={handleChange}
               />
@@ -378,7 +373,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="pagibigMpl"
-                // defaultValue={employee.pagibigMpl}
+                defaultValue={employee.pagibigMpl}
                 required
                 onChange={handleChange}
               />
@@ -390,7 +385,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="carSticker"
-                // defaultValue={employee.carSticker}
+                defaultValue={employee.carSticker}
                 required
                 onChange={handleChange}
               />
@@ -402,7 +397,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="hdmfCont"
-                // defaultValue={employee.hdmfCont}
+                defaultValue={employee.hdmfCont}
                 required
                 onChange={handleChange}
               />
@@ -414,7 +409,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="pagibigEmer"
-                // defaultValue={employee.pagibigEmer}
+                defaultValue={employee.pagibigEmer}
                 required
                 onChange={handleChange}
               />
@@ -426,7 +421,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="dorm"
-                // defaultValue={employee.dorm}
+                defaultValue={employee.dorm}
                 required
                 onChange={handleChange}
               />
@@ -438,7 +433,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="landbank"
-                // defaultValue={employee.landbank}
+                defaultValue={employee.landbank}
                 required
                 onChange={handleChange}
               />
@@ -450,7 +445,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="nhmfc"
-                // defaultValue={employee.nhmfc}
+                defaultValue={employee.nhmfc}
                 required
                 onChange={handleChange}
               />
@@ -462,7 +457,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisEducLoan"
-                // defaultValue={employee.gsisEducLoan}
+                defaultValue={employee.gsisEducLoan}
                 required
                 onChange={handleChange}
               />
@@ -474,7 +469,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisEnhanced"
-                // defaultValue={employee.gsisEnhanced}
+                defaultValue={employee.gsisEnhanced}
                 required
                 onChange={handleChange}
               />
@@ -486,7 +481,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisConsoLoan"
-                // defaultValue={employee.gsisConsoLoan}
+                defaultValue={employee.gsisConsoLoan}
                 required
                 onChange={handleChange}
               />
@@ -498,7 +493,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="mplTup"
-                // defaultValue={employee.mplTup}
+                defaultValue={employee.mplTup}
                 required
                 onChange={handleChange}
               />
@@ -510,7 +505,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="tupfa"
-                // defaultValue={employee.tupfa}
+                defaultValue={employee.tupfa}
                 required
                 onChange={handleChange}
               />
@@ -522,7 +517,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisEcard"
-                // defaultValue={employee.gsisEcard}
+                defaultValue={employee.gsisEcard}
                 required
                 onChange={handleChange}
               />
@@ -534,7 +529,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="tupteaHcard"
-                // defaultValue={employee.tupteaHcard}
+                defaultValue={employee.tupteaHcard}
                 required
                 onChange={handleChange}
               />
@@ -546,7 +541,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="hdmfMp2"
-                // defaultValue={employee.hdmfMp2}
+                defaultValue={employee.hdmfMp2}
                 required
                 onChange={handleChange}
               />
@@ -558,7 +553,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="coop"
-                // defaultValue={employee.coop}
+                defaultValue={employee.coop}
                 required
                 onChange={handleChange}
               />
@@ -570,7 +565,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="gsisOpsIns"
-                // defaultValue={employee.gsisOpsIns}
+                defaultValue={employee.gsisOpsIns}
                 required
                 onChange={handleChange}
               />
@@ -582,7 +577,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="mtif"
-                // defaultValue={employee.mtif}
+                defaultValue={employee.mtif}
                 required
                 onChange={handleChange}
               />
@@ -599,7 +594,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="total"
-                // defaultValue={employee.total}
+                defaultValue={employee.total}
                 required
                 onChange={handleChange}
               />
@@ -611,7 +606,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="netAmountDue"
-                // defaultValue={employee.netAmountDue}
+                defaultValue={employee.netAmountDue}
                 required
                 onChange={handleChange}
               />
@@ -623,7 +618,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="firstHalf"
-                // defaultValue={employee.firstHalf}
+                defaultValue={employee.firstHalf}
                 required
                 onChange={handleChange}
               />
@@ -635,7 +630,7 @@ function InputDeductions() {
               <input
                 type="number"
                 name="secondHalf"
-                // defaultValue={employee.secondHalf}
+                defaultValue={employee.secondHalf}
                 required
                 onChange={handleChange}
               />

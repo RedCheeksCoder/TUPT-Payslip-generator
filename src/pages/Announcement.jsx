@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import AnnouncementItem from "../ui/AnnouncementItem";
-import { useAnnouncement } from "../App";
+import { useAnnouncement, useUser } from "../App";
 import StyledNavlink from "../ui/StyledNavlink";
 import { MdOutlineAnnouncement } from "react-icons/md";
 
@@ -45,6 +45,7 @@ const AnnouncementContainer = styled.div`
   }
 `;
 function Announcement() {
+  const { userEmail } = useUser();
   const { announcements } = useAnnouncement();
   return (
     <StyledAnnouncement>
@@ -54,9 +55,13 @@ function Announcement() {
           <AnnouncementItem announcement={announcement} key={announcement.id} />
         ))}
       </AnnouncementContainer>
-      <StyledNavlink to="/addAnnouncement">
-        <MdOutlineAnnouncement /> Add Announcement
-      </StyledNavlink>
+      {userEmail === "diane_feria@tup.edu.ph" ? (
+        <StyledNavlink to="/addAnnouncement">
+          <MdOutlineAnnouncement /> Add Announcement
+        </StyledNavlink>
+      ) : (
+        ""
+      )}
     </StyledAnnouncement>
   );
 }

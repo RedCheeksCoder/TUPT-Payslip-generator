@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import supabase from "../services/supabase";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const StyledChangePassword = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ function ChangePassword() {
   const [formData, setFormData] = useState({
     new_password: "",
   });
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setFormData((prevFormData) => {
@@ -96,7 +98,15 @@ function ChangePassword() {
 
     if (error) {
       toast.error("Username or password is wrong");
-    } else toast.success("Changing password is successful");
+    } else
+      toast.success(
+        "Changing password is successful. You'll be logged out in 3 seconds"
+      );
+    setTimeout(simulateLogout, 3000);
+
+    function simulateLogout() {
+      navigate("/login");
+    }
   }
   return (
     <StyledChangePassword>
@@ -106,12 +116,13 @@ function ChangePassword() {
           <Input
             placeholder="New password"
             name="email"
+            type="password"
             onChange={handleChange}
           />
           <Input
             placeholder="Confirm New Password"
             name="new_password"
-            type="text"
+            type="password"
             onChange={handleChange}
           />
           <LoginAsUserButton>Submit</LoginAsUserButton>

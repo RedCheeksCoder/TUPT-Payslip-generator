@@ -14,14 +14,20 @@ const StyledPageNotFound = styled.div`
     height: 45%;
   }
   p {
-    font-size: 3rem;
+    font-size: 2.5rem;
     max-width: 40%;
     font-weight: 500;
     text-align: center;
     color: #a5a4a4;
     @media (max-width: 900px) {
-      font-size: 2rem;
+      font-size: 1.5rem;
       max-width: 70%;
+    }
+  }
+  h1 {
+    font-size: 5rem;
+    @media (max-width: 900px) {
+      font-size: 3rem;
     }
   }
 `;
