@@ -2,7 +2,7 @@
 import { useState } from "react";
 import EmployeeItem from "./EmployeeItem";
 import styled from "styled-components";
-import { useEmployees, useSelectedUser } from "../App";
+import { useEmployees, useSelectedUser } from "../../App";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StyledEmployeeList = styled.div`

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { IoIosClose } from "react-icons/io";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteAnnouncement } from "../services/apiAnnouncement";
+import { deleteAnnouncement } from "../../services/apiAnnouncement";
 import toast from "react-hot-toast";
-import { useUser } from "../App";
+import { useUser } from "../../App";
 
 const StyledAnnouncementItem = styled.div`
   margin: 0.2rem;

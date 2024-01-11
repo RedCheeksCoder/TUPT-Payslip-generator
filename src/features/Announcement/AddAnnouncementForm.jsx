@@ -1,8 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import styled from "styled-components";
-import { addAnnouncement } from "../services/apiAnnouncement";
-import toast from "react-hot-toast";
+import { AddAnnouncement } from "../../services/addAnnouncement";
 
 const FormWrapper = styled.div`
   display: flex;
@@ -75,29 +73,11 @@ const AddAnnouncementForm = () => {
     }));
   };
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: (formData) => addAnnouncement(formData),
-    onSuccess: () => {
-      toast.success("New announcement successfully added");
-      queryClient.invalidateQueries({
-        queryKey: ["announcement"],
-      });
-
-      // Reset the form after successful submission
-      setFormData({
-        about: "",
-        location: "",
-        date: "",
-        time: "",
-      });
-    },
-    onError: (err) => toast.error(err.message),
-  });
+  const mutateAnnouncement = AddAnnouncement(setFormData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate(formData);
+    mutateAnnouncement(formData);
   };
 
   return (

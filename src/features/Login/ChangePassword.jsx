@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import supabase from "../services/supabase";
-import toast from "react-hot-toast";
+import { ChangePasswordApi } from "../../services/apiAuth";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const StyledChangePassword = styled.div`
   display: flex;
@@ -74,39 +74,28 @@ const FormWrapper = styled.div`
 `;
 
 function ChangePassword() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     new_password: "",
   });
-  const navigate = useNavigate();
 
-  function handleChange(event) {
+  function handleChange(e) {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [event.target.name]: event.target.value,
+        [e.target.name]: e.target.value,
       };
     });
   }
 
-  async function handleSubmit(e) {
+  if (!formData) {
+    toast.error("Please complete all information correctly.");
+    return;
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-
-    const { data, error } = await supabase.auth.updateUser({
-      password: formData.new_password,
-    });
-    console.log(data);
-
-    if (error) {
-      toast.error("Username or password is wrong");
-    } else
-      toast.success(
-        "Changing password is successful. You'll be logged out in 3 seconds"
-      );
-    setTimeout(simulateLogout, 3000);
-
-    function simulateLogout() {
-      navigate("/login");
-    }
+    ChangePasswordApi(formData, navigate);
   }
   return (
     <StyledChangePassword>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "./Button";
-import { useSelectedUser } from "../App";
+import Button from "../../ui/Button";
+import { useSelectedUser } from "../../App";
 
 const StyledEmployeeButton = styled.div`
   display: flex;

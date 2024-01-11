@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useAnnouncement } from "../App";
+import { useAnnouncement } from "../../App";
 
 const StyledAnalytics = styled.div`
   padding: 2rem;

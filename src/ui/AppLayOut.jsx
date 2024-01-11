@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import BottomNav from "./BottomNav";
+import BottomNav from "./BotNav";
 import styled from "styled-components";
 
 const StyledAppLayOut = styled.div`

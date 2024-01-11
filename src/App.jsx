@@ -6,8 +6,8 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayOut from "./ui/AppLayOut";
 import Announcement from "./pages/Announcement";
-import AddAnnouncement from "./ui/AddAnnouncement";
-import InputDeductions from "./ui/InputDeductions";
+import AddAnnouncement from "./features/Announcement/AddAnnouncement";
+import InputDeductions from "./features/Generate Payslip/InputDeductions";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -16,8 +16,8 @@ import { getAdmin, getFaculty } from "./services/apiEmployees";
 import Spinner from "./ui/Spinner";
 import { getAnnouncements } from "./services/apiAnnouncement";
 import toast, { Toaster } from "react-hot-toast";
-import ChangePassword from "./ui/ChangePassword";
-import EmployeeSearch from "./ui/EmployeeSearch";
+import ChangePassword from "./features/Login/ChangePassword";
+import EmployeeSearch from "./features/Search/EmployeeSearch";
 
 /* CONTEXTS */
 const EmployeeContext = createContext();

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Actions from "../ui/Actions";
-import Analytics from "../ui/Analytics";
+import Analytics from "../features/Analytics/Analytics";
 const StyledAdmin = styled.div`
   display: flex;
   flex-wrap: wrap;

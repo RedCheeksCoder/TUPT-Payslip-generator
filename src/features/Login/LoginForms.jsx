@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import supabase from "../services/supabase";
 import styled from "styled-components";
+import { Login } from "../../services/apiAuth";
 import toast from "react-hot-toast";
 
 const LoginFormWrapper = styled.div`
@@ -71,8 +71,7 @@ const Heading = styled.p`
 `;
 
 const LoginForms = ({ setToken, setUserEmail }) => {
-  let navigate = useNavigate();
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -86,26 +85,16 @@ const LoginForms = ({ setToken, setUserEmail }) => {
       };
     });
   }
+  /* ADD DEBOUNCER */
 
-  async function handleSubmit(e) {
+  if (!formData) {
+    toast.error("Username or password is wrong");
+    return;
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
-      setUserEmail(data.user.email);
-
-      if (error) throw error;
-      setToken(data);
-      toast.success("Login successful!");
-      navigate("/announcement");
-
-      //   alert('Check your email for verification link')
-    } catch (error) {
-      toast.error("Username or password is wrong"); // Access the error message using 'error.message'
-    }
+    Login(formData, setUserEmail, setToken, navigate);
   }
 
   return (

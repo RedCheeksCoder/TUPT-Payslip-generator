@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AnnouncementItem from "../ui/AnnouncementItem";
+import AnnouncementItem from "../features/Announcement/AnnouncementItem";
 import { useAnnouncement, useUser } from "../App";
 import StyledNavlink from "../ui/StyledNavlink";
 import { MdOutlineAnnouncement } from "react-icons/md";

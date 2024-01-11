@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import EmployeeButton from "./EmployeeButton";
-import { useSelectedUser } from "../App";
+import EmployeeButton from "../Search/EmployeeButton";
+import { useSelectedUser } from "../../App";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { updateAdmin, updateEmployees } from "../services/apiEmployees";
+import { updateAdmin, updateEmployees } from "../../services/apiEmployees";
 
 const StyledDeduction = styled.div`
   font-family: "Poppins";

@@ -1,5 +1,5 @@
 import jsPDF from "jspdf";
-import PayrollMonth from "./PayrollMonth";
+import PayrollMonth from "../ui/PayrollMonth";
 
 function PrintPdf(employee) {
   const { currentMonth, currentYear } = PayrollMonth();

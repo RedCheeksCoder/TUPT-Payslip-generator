@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LoginForms from "../ui/LoginForms";
+import LoginForms from "../features/Login/LoginForms";
 const StyledLogin = styled.div`
   height: 100dvh;
   display: flex;

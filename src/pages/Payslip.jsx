@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Deductions from "../ui/Deductions";
 import Button from "../ui/Button";
-import PrintPdf from "../ui/PrintPdf";
+import PrintPdf from "../helper/PrintPdf";
 import CurrentUser from "../helper/CurrentUser";
 
 const Container = styled.div`

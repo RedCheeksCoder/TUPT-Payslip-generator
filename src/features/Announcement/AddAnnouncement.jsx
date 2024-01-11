@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Announcement from "../pages/Announcement";
+import Announcement from "../../pages/Announcement";
 import AddAnnouncementForm from "./AddAnnouncementForm";
 
 const StyledAddAnnouncement = styled.div`
