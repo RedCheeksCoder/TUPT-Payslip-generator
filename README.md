@@ -30,3 +30,13 @@ For admin: Create and post announcement, Search employees, Edit payslip of emplo
 
 To run:
 npm run dev
+
+Demonstration video:
+https://youtu.be/664tcu_Rn30
+
+For employee experience:
+Login: user-employee@example.com
+Password: 1234567890
+
+For admin experience:
+**Due to confidential information involved in this project, an admin experience won't be available.
